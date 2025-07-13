@@ -1,0 +1,22 @@
+energy FCR
+warmStart 0
+size -1
+time 2 0.025
+density 1000
+stiffness 1e5 0.2
+turnOffGravity
+
+script fall
+
+shapes input 1
+input/tetMeshes/armadillo_verschoor.msh 0 0 0  0 0 0  1 1 1 
+
+
+selfCollisionOn
+
+zoom 1
+
+view perspective
+
+constraintSolver interiorPoint
+

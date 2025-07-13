@@ -1,0 +1,21 @@
+energy FCR
+warmStart 0
+size -1
+time 4 0.04
+density 1000
+stiffness 1e5 0.2
+script fall
+turnOffGravity
+
+shapes input 1
+input/tetMeshes/dolphin5K.msh 0 0 0  0 0 0  1 1 1 
+
+
+selfCollisionOff
+
+zoom 1
+
+view perspective
+
+constraintSolver interiorPoint
+
