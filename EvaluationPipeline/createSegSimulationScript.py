@@ -267,9 +267,9 @@ if __name__ == "__main__":
                     sing_exe="$SCRATCH/test/parth-ipc-benchmark-generator/EvaluationPipeline/parth_docker.sif",
                     sing_bind_input="$SCRATCH/test/parth-ipc-benchmark-generator/",
                     sing_bind_inside="mnt",
-                    prog_address = "/mnt/build/IPC_bin",
+                    prog_address = "/build/IPC_bin",
                     solver="CHOLMOD",
-                    config_address="/mnt/input/seg/",
+                    config_address="/input/seg/",
                     simulation_dict=seg_simulations,
                     fixed_flags=" --DoAnalysis=0",
                     test_parameters={"IM":['0']})

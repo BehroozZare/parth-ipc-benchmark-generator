@@ -20,8 +20,8 @@ export num_threads=20
 export MKL_NUM_THREADS=$num_threads
 export OMP_NUM_THREADS=$num_threads
 export VECLIB_MAXIMUM_THREADS=$num_threads
-export PROG_PATH=/mnt/mnt/build/IPC_bin
-export Config=/mnt/mnt/input/seg/14_matTwist_seg3.txt
+export PROG_PATH=/mnt/build/IPC_bin
+export Config=/mnt/input/seg/14_matTwist_seg3.txt
 export progMode=100
 
 
