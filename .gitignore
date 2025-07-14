@@ -253,5 +253,4 @@ erleben.blend
 input/oldTetMeshes
 IPC_analysis/Strumpack_Analysis/STRUMPACK_Parameter_Analysis/scripts
 *.zip
-*.sh
 IPC_analysis/IPCSolverAnalysis/*

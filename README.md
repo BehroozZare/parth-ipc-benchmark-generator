@@ -10,7 +10,7 @@ To install IPC, please refer to the instructions in the [original IPC repository
 
 ### Docker/Apptainer Usage
 
-For containerized execution, we provide Apptainer (formerly Singularity) containers. The container files are referenced in the evaluation scripts and can be used for consistent execution environments across different systems.
+For containerized execution, we provide Apptainer (formerly Singularity) containers. The container files are referenced in the evaluation scripts and can be used for consistent execution environments across different systems. For a general overview of the evaluation pipeline and scripts used for generating batch jobs and configuration files, see [EvaluationPipeline/README.md](EvaluationPipeline/README.md).
 
 ### Mac Users: OpenMP Configuration
 
@@ -44,11 +44,13 @@ To run simulations and save the Hessian matrices, use the following command form
 ```
 
 For example:
+
 ```bash
 ./build/IPC_bin 100 input/paperExamples/12_matOnBoard.txt 0.999 666 4 t12
 ```
 
 The Hessian matrices are automatically saved in Matrix Market format (`.mtx`) in the output directory with the naming convention:
+
 ```
 hessian_<frame>_<iteration>_<tag>_IPC.mtx
 ```
