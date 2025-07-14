@@ -194,7 +194,7 @@ class IPCTestGenerator:
                 run_method_script.write('export progMode=100\n\n\n')
 
                 run_method_script.write('singularity exec $SING_SIF bash -c "source /opt/intel/compilers_and_libraries/linux/bin/compilervars.sh intel64 &&\\ \n'
-                                    '$PROG_PATH $progMode $Config' + " --SimName=../../csv/" + sim + "_" + test + ' --output=/mnt/' + os.path.join(self.output_dir, sim, test) + self.test_flags[cnt] + '"\n')
+                                    '$PROG_PATH $progMode $Config' + " --SimName=../../csv/" + sim + "_" + test + ' --output=/mnt/EvaluationPipeline/scripts/' + os.path.join(self.output_dir, sim, test) + self.test_flags[cnt] + '"\n')
 
                 run_method_script.close()
                 self.run_all_file.write('sbatch  ' + os.path.join(sim, test + '.sh') + '\n')
@@ -260,17 +260,18 @@ if __name__ == "__main__":
         strum_tester = IPCTestGenerator(cluster="Niagara",
                     output_dir_name="CHOLMOD_CHECKPOINT_GENERATION",
                     num_threads=["20"],
-                    sing_exe="$SCRATCH/DOCKER/PARTH_DOCKER.sif",
-                    sing_bind_input="$SCRATCH/DOCKER/Source",
+                    sing_exe="$SCRATCH/test/parth-ipc-benchmark-generator/EvaluationPipeline/parth_docker.sif",
+                    sing_bind_input="$SCRATCH/test/parth-ipc-benchmark-generator/",
                     sing_bind_inside="mnt",
-                    prog_address = "/IPC-dev2/build/IPC_bin",
+                    prog_address = "/build/IPC_bin",
                     solver="CHOLMOD",
-                    config_address="/IPC-dev2/input/paperExamples/",
+                    config_address="/input/paperExamples/",
                     simulation_dict=simulations,
                     fixed_flags=" --DoAnalysis=0",
                     test_parameters={'CompType': ["NONE"]})
         strum_tester.createTests()
-        
+    
+
         # strum_tester = IPCTestGenerator(cluster="Niagara",
         #             output_dir_name="LAZY_SIM_Test",
         #             num_threads=["20"],

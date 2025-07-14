@@ -21,7 +21,7 @@ export MKL_NUM_THREADS=$num_threads
 export OMP_NUM_THREADS=$num_threads
 export VECLIB_MAXIMUM_THREADS=$num_threads
 export PROG_PATH=/mnt/build/IPC_bin
-export Config=/mnt/mnt/input/seg/8_rollerBall_seg8.txt
+export Config=/mnt/input/seg/8_rollerBall_seg8.txt
 export progMode=100
 
 
