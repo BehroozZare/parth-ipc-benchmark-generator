@@ -246,11 +246,11 @@ input.txt
 paper
 *.code-workspace
 *.pdf
+*.sif
 *.blend[123456789]
 erleben.blend
 *.geo
 input/oldTetMeshes
 IPC_analysis/Strumpack_Analysis/STRUMPACK_Parameter_Analysis/scripts
 *.zip
-*.sh
 IPC_analysis/IPCSolverAnalysis/*

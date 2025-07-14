@@ -3,6 +3,7 @@
 import os
 import re
 import pathlib
+from pathlib import Path
 
 # IPCTestGenerator is responsible for generating batch scripts for running segmented simulation tests on a cluster.
 class IPCTestGenerator:
@@ -243,10 +244,13 @@ if __name__ == "__main__":
     # Main script entry: generate segmented config files and test scripts for all simulations and solvers.
     NUM_SEG = 10
     for sim in simulations:
+        # Make the input address and output address relative to the current directory
+        input_address = Path(__file__).parent.parent / "input" / "paperExamples"
+        output_address = Path(__file__).parent.parent / "input" / "seg"
         createSegConfig(
-            status_file_path = "/mnt/Checkpoints/",
-            input_address = "/home/behrooz/Desktop/IPC_Project/IPC-dev2/input/paperExamples/",
-            output_address = "/home/behrooz/Desktop/IPC_Project/IPC-dev2/input/seg/",
+            status_file_path = "/mnt/Checkpoints/", #Folder for the status files
+            input_address = input_address,
+            output_address = output_address,
             sim_name = sim,
             total_frame = simulations[sim]['Frame'],
             segments=NUM_SEG)
@@ -257,53 +261,6 @@ if __name__ == "__main__":
             seg_simulations[sim + '_seg' + str(i)] = {'Frame': simulations[sim]['Frame'] / NUM_SEG, 'memory': 1700, 'timing':  simulations[sim]['timing'], 'Iteration': simulations[sim]['Iteration'], 'core': 8}
     
     
-    strum_tester = IPCTestGenerator(cluster="Niagara",
-                output_dir_name="MKL_SIM_Test",
-                num_threads=["20"],
-                sing_exe="$SCRATCH/DOCKER/PARTH_DOCKER.sif",
-                sing_bind_input="$SCRATCH/DOCKER/Source",
-                sing_bind_inside="mnt",
-                prog_address = "/IPC-dev2/build/IPC_bin",
-                solver="MKL",
-                config_address="/IPC-dev2/input/seg/",
-                simulation_dict=seg_simulations,
-                fixed_flags=" --DoAnalysis=0",
-                test_parameters={"IM":['0']})
-    strum_tester.createTests()
-    
-    
-    strum_tester = IPCTestGenerator(cluster="Niagara",
-                output_dir_name="EIGEN_SIM_Test",
-                num_threads=["20"],
-                sing_exe="$SCRATCH/DOCKER/PARTH_DOCKER.sif",
-                sing_bind_input="$SCRATCH/DOCKER/Source",
-                sing_bind_inside="mnt",
-                prog_address = "/IPC-dev2/build/IPC_bin",
-                solver="EIGEN",
-                config_address="/IPC-dev2/input/seg/",
-                simulation_dict=seg_simulations,
-                fixed_flags=" --DoAnalysis=0",
-                test_parameters={"IM":['0']})
-    strum_tester.createTests()
-    
-    
-    
-    strum_tester = IPCTestGenerator(cluster="Niagara",
-                output_dir_name="PARSY_SIM_Test",
-                num_threads=["20"],
-                sing_exe="$SCRATCH/DOCKER/PARTH_DOCKER.sif",
-                sing_bind_input="$SCRATCH/DOCKER/Source",
-                sing_bind_inside="mnt",
-                prog_address = "/IPC-dev2/build/IPC_bin",
-                solver="PARSY",
-                config_address="/IPC-dev2/input/seg/",
-                simulation_dict=seg_simulations,
-                fixed_flags=" --DoAnalysis=0",
-                test_parameters={"IM":['0']})
-    strum_tester.createTests()
-    
-    
-
     strum_tester = IPCTestGenerator(cluster="Niagara",
                     output_dir_name="CHOLMOD_CHECKPOINT_Test",
                     num_threads=["20"],
@@ -318,3 +275,51 @@ if __name__ == "__main__":
                     test_parameters={"IM":['0']})
     strum_tester.createTests()
     
+
+    # strum_tester = IPCTestGenerator(cluster="Niagara",
+    #             output_dir_name="MKL_SIM_Test",
+    #             num_threads=["20"],
+    #             sing_exe="$SCRATCH/DOCKER/PARTH_DOCKER.sif",
+    #             sing_bind_input="$SCRATCH/DOCKER/Source",
+    #             sing_bind_inside="mnt",
+    #             prog_address = "/IPC-dev2/build/IPC_bin",
+    #             solver="MKL",
+    #             config_address="/IPC-dev2/input/seg/",
+    #             simulation_dict=seg_simulations,
+    #             fixed_flags=" --DoAnalysis=0",
+    #             test_parameters={"IM":['0']})
+    # strum_tester.createTests()
+    
+    
+    # strum_tester = IPCTestGenerator(cluster="Niagara",
+    #             output_dir_name="EIGEN_SIM_Test",
+    #             num_threads=["20"],
+    #             sing_exe="$SCRATCH/DOCKER/PARTH_DOCKER.sif",
+    #             sing_bind_input="$SCRATCH/DOCKER/Source",
+    #             sing_bind_inside="mnt",
+    #             prog_address = "/IPC-dev2/build/IPC_bin",
+    #             solver="EIGEN",
+    #             config_address="/IPC-dev2/input/seg/",
+    #             simulation_dict=seg_simulations,
+    #             fixed_flags=" --DoAnalysis=0",
+    #             test_parameters={"IM":['0']})
+    # strum_tester.createTests()
+    
+    
+    
+    # strum_tester = IPCTestGenerator(cluster="Niagara",
+    #             output_dir_name="PARSY_SIM_Test",
+    #             num_threads=["20"],
+    #             sing_exe="$SCRATCH/DOCKER/PARTH_DOCKER.sif",
+    #             sing_bind_input="$SCRATCH/DOCKER/Source",
+    #             sing_bind_inside="mnt",
+    #             prog_address = "/IPC-dev2/build/IPC_bin",
+    #             solver="PARSY",
+    #             config_address="/IPC-dev2/input/seg/",
+    #             simulation_dict=seg_simulations,
+    #             fixed_flags=" --DoAnalysis=0",
+    #             test_parameters={"IM":['0']})
+    # strum_tester.createTests()
+    
+    
+
