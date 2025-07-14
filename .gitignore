@@ -246,6 +246,7 @@ input.txt
 paper
 *.code-workspace
 *.pdf
+*.sif
 *.blend[123456789]
 erleben.blend
 *.geo
